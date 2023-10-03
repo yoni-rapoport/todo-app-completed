@@ -46,12 +46,13 @@ const entities = [Task]
 const api = remultExpress({
   entities,
   controllers: [TasksController],
+  /*
   dataProvider: createPostgresDataProvider({
     connectionString:
       process.env['DATABASE_URL'] ||
       'postgres://postgres:MASTERKEY@localhost/postgres',
       configuration:'heroku'
-  }),
+  }),*/
   getUser: (req) => req.session?.['user'],
 })
 app.use(api)
