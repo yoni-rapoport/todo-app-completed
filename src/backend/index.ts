@@ -49,7 +49,8 @@ const api = remultExpress({
   dataProvider: createPostgresDataProvider({
     connectionString:
       process.env['DATABASE_URL'] ||
-      'postgres://postgres:MASTERKEY@localhost/postgres'
+      'postgres://postgres:MASTERKEY@localhost/postgres',
+      configuration:'heroku'
   }),
   getUser: (req) => req.session?.['user'],
 })
