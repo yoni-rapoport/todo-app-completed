@@ -50,7 +50,7 @@ const api = remultExpress({
     connectionString:
       process.env['DATABASE_URL'] ||
       'postgres://postgres:MASTERKEY@localhost/postgres',
-    configuration: 'heroku'
+    configuration: { ssl: false }
   }),
   getUser: (req) => req.session?.['user'],
 })
