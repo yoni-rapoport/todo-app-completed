@@ -47,9 +47,18 @@ const api = remultExpress({
   entities,
   controllers: [TasksController],
   dataProvider: createPostgresDataProvider({
-    connectionString:
-      process.env['DATABASE_URL'] ||
-      'postgres://postgres:MASTERKEY@localhost/postgres'
+    configuration: {
+      user: process.env.PGUSER,
+      password: process.env.PGPASSWORD,
+      host: process.env.PGHOST,
+      database: process.env.PGDATABASE,
+      //@ts-ignore
+      port: process.env.PGPORT,
+      ssl: {
+        rejectUnauthorized: false,
+        ca: process.env.CACERT,
+      }
+    }
   }),
   getUser: (req) => req.session?.['user'],
 })
